@@ -118,6 +118,6 @@ function deleteClock(event) {
         
     }
 
-}
+};
 
 
