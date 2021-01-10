@@ -64,7 +64,12 @@ button{
     border: none;
     margin-left: 0.5em;
     /* border-radius: 1em; */
+    
 
+}
+
+button > * {
+    pointer-events: none;
 }
 
 .form__send__icon{
