@@ -10,7 +10,14 @@ function addClock() {
 
     var tempoDefinidoInterno = [tempoDefinido.value, tempoDefinido.valueAsNumber];
     var nomeRelogioInterno = nomeRelogio.value;
-    adicionaClock(tempoDefinidoInterno, nomeRelogioInterno);
+
+    if (tempoDefinidoInterno && nomeRelogioInterno.trim() != "") {
+        adicionaClock(tempoDefinidoInterno, nomeRelogioInterno);
+    }
+
+    else {
+        alert('Preencher os campos')
+    }
 
 };
 
@@ -76,20 +83,22 @@ function playCounter(event) {
 
         let hours = Math.floor(time / 3600);
         hours = hours < 10 ? '0' + hours : hours
-        
         let minutes = Math.floor((time % 3600) / 60);
         minutes = minutes < 10 ? '0' + minutes : minutes
         let seconds = time % 60;
 
         seconds = seconds < 10 ? '0' + seconds : seconds;
         countdown.innerHTML = `${hours}:${minutes}:${seconds}`;
-        if (time <= 0){
+        if (time <= 0) {
             clearInterval(interval)
-            var audio = new Audio('./sound/alarm_sound_tropical.mp3');
+            var audio = new Audio('./sound/alarmclockringing.mp3');
             audio.play();
         }
-        time--;
-        console.log(time)
+        else {
+            time--;
+            console.log(time)
+        }
+
     }
 
     interval = setInterval(updateClockNumber, 1000)
@@ -97,7 +106,7 @@ function playCounter(event) {
 };
 
 
-containerClocks.addEventListener('click', deleteClock)
+containerClocks.addEventListener('click', deleteClock);
 function deleteClock(event) {
 
     var isDeleteButton = event.target.classList.contains('form__delete')
@@ -106,6 +115,7 @@ function deleteClock(event) {
         const excluirClock = event.target
         clearInterval(interval)
         excluirClock.parentElement.remove()
+        
     }
 
 }
